@@ -1,7 +1,12 @@
 import sqlite3
 
+def use(config):
+  global db
+  db = 'sqlite/' + config
+  scaffold()
+
 def open():
-  con = sqlite3.connect('config.db')
+  con = sqlite3.connect(db)
   c = con.cursor()
   return con, c
 
@@ -27,5 +32,3 @@ def writeConfig(key, value):
   c.execute('INSERT OR REPLACE INTO config (key, value) VALUES (?, ?)', [key, value])
   con.commit()
   con.close()
-
-scaffold()
