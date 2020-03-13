@@ -22,16 +22,16 @@ class AutoReport(QWidget):
     _, self.bcc = self.makeInputCombo('BCC', 20, 170, 420, 25, 'bcc')
     _, self.subject = self.makeInputCombo('Subject template', 20, 220, 200, 25, 'subject')
     _, self.dateformat = self.makeInputCombo('Date format', 240, 220, 200, 25, 'dateformat')
-    self.prefix = self.makeTextarea('Prefix', 20, 320, 800, 70, 'prefix')
-    self.content = self.makeTextarea('Content', 20, 400, 800, 200, 'content')
-    self.postfix = self.makeTextarea('Postfix', 20, 610, 800, 70, 'postfix')
-    self.sendBtn = self.makeButton('Send', 20, 690, self.send)
+    self.prefix = self.makeTextarea('Prefix', 20, 270, 800, 70, 'prefix')
+    self.content = self.makeTextarea('Content', 20, 350, 800, 200, 'content')
+    self.postfix = self.makeTextarea('Postfix', 20, 560, 800, 70, 'postfix')
+    self.sendBtn = self.makeButton('Send', 20, 640, self.send)
 
     # Report picker
     self.loadReports()
 
     # Window configurations
-    self.setGeometry(300, 300, 840, 720)
+    self.setGeometry(300, 300, 840, 680)
     self.setWindowTitle('Input dialog')
     self.show()
 
@@ -91,7 +91,7 @@ class AutoReport(QWidget):
 
   def makeInputCombo(self, title, left, top, width, height, model):
     title = self.makeLabel(title, left, top)
-    text = self.makeInput(left, top + 20, width, height, lambda text : store.writeConfig(model, text))
+    text = self.makeInput(left, top + 15, width, height, lambda text : store.writeConfig(model, text))
     return title, text
 
   def createReport(self):
@@ -114,7 +114,7 @@ class AutoReport(QWidget):
     content = self.content.toPlainText()
     postfix = self.postfix.toPlainText()
     store.writeConfig('content', content)
-    content = '<p>{}</p><p>{}</p><p>{}</p>'.format(prefix, content, postfix)
+    content = '<div style="font-family: Arial,Helvetica,sans-serif;"><p>{}</p><p>{}</p><p>{}</p></div>'.format(prefix, content, postfix)
     sendmail(
       self.email.text(),
       self.password.text(),

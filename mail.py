@@ -23,7 +23,7 @@ def sendmail(email, password, to, cc, bcc, subject, content):
     msg.attach(message)
 
     server.sendmail(email, to, msg.as_string())
-    alert(QMessageBox.Information, 'Mail sent successfully!', '{} was sent successfully to {}'.format(subject, cc))
+    alert(QMessageBox.Information, 'Mail sent successfully!', '{} was sent successfully to {}'.format(subject, to))
   except Exception as e:
     alert(QMessageBox.Warning, 'Error sending email', str(e))
   finally:
