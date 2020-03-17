@@ -1,3 +1,5 @@
 dist
+build
 sqlite
 __pycache__
+*.spec
