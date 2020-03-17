@@ -1,5 +1,5 @@
 from PyQt5.QtWidgets import (QWidget, QPushButton, QLineEdit, QInputDialog, QApplication, QLabel, QPlainTextEdit, QBoxLayout)
-from PyQt5.QtCore import (QUrl)
+from PyQt5.QtCore import (QUrl, Qt)
 from PyQt5.QtWebEngineWidgets import (QWebEngineView)
 import sys
 import os
@@ -35,8 +35,10 @@ class AutoReport(QWidget):
     self.loadReports()
 
     # Window configurations
+    self.setWindowTitle('Auto Report')
     self.setGeometry(300, 300, 1080, 680)
-    self.setWindowTitle('Input dialog')
+    self.setWindowFlags(Qt.WindowCloseButtonHint | Qt.WindowMinimizeButtonHint)
+    self.setBackground()
     self.show()
 
   def loadReports(self):
@@ -54,6 +56,11 @@ class AutoReport(QWidget):
     name = file[0:-3]
     btn = self.makeButton(name, 480, self.reportTop, lambda _, file=file : self.loadConfig(file))
     self.reports.append(btn)
+
+  def setBackground(self):
+    palette = self.palette()
+    palette.setColor(self.backgroundRole(), Qt.white)
+    self.setPalette(palette)
 
   def loadConfig(self, file):
     store.use(file)
