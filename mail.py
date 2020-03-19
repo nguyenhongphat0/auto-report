@@ -22,7 +22,7 @@ def sendmail(email, password, to, cc, bcc, subject, content):
     message = MIMEText(content, 'html')
     msg.attach(message)
 
-    server.sendmail(email, to, msg.as_string())
+    server.sendmail(email, '{},{},{}'.format(to, cc, bcc).split(','), msg.as_string())
     alert(QMessageBox.Information, 'Mail sent successfully!', '{} was sent successfully to {}'.format(subject, to))
   except Exception as e:
     alert(QMessageBox.Warning, 'Error sending email', str(e))

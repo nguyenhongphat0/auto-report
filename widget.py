@@ -36,7 +36,7 @@ class AutoReport(QWidget):
 
     # Window configurations
     self.setWindowTitle('Auto Report')
-    self.setGeometry(300, 300, 1080, 680)
+    self.setFixedSize(1080, 680)
     self.setWindowFlags(Qt.WindowCloseButtonHint | Qt.WindowMinimizeButtonHint)
     self.setBackground()
     self.show()
